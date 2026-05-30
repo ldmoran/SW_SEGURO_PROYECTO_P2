@@ -19,11 +19,17 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-      - name: Deploy with Railway
-        uses: railwayapp/railway-github-action@v2
-        with:
-          railwayToken: ${{ secrets.RAILWAY_TOKEN }}
-          service: ${{ secrets.RAILWAY_SERVICE }}
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy with Railway CLI
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+          RAILWAY_SERVICE: ${{ secrets.RAILWAY_SERVICE }}
+        run: |
+          railway link --project $RAILWAY_PROJECT_ID --environment production
+          railway up --service $RAILWAY_SERVICE
 
       - name: Notify deploy success
         if: success()
