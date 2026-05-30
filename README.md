@@ -32,7 +32,13 @@ Pipeline CI/CD seguro con modelo de mineria de datos (NO LLM) para clasificar co
 2) Secrets en GitHub
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
+dev
 Nota: el despliegue se realiza via integracion GitHub de Railway (no requiere token).
+=======
+- `RAILWAY_TOKEN`
+- `RAILWAY_SERVICE`
+- `RAILWAY_PROJECT_ID`
+test
 
 3) Entrenar el modelo
 - Abrir el notebook en [notebooks/train_model.ipynb](notebooks/train_model.ipynb)
