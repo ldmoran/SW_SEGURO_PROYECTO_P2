@@ -19,22 +19,21 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
-
-      - name: Deploy with Railway CLI
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
-          RAILWAY_SERVICE: ${{ secrets.RAILWAY_SERVICE }}
+      - name: Build Docker image
         run: |
-          railway link --project $RAILWAY_PROJECT_ID --environment production
-          railway up --service $RAILWAY_SERVICE
+          docker build -t secure-ci:latest .
+
+      - name: Notify deploy triggered
+        run: |
+          python scripts/notify_telegram.py --message "Deploy disparado via integracion GitHub de Railway."
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
       - name: Notify deploy success
         if: success()
         run: |
-          python scripts/notify_telegram.py --message "Despliegue en produccion exitoso."
+          python scripts/notify_telegram.py --message "Workflow de deploy finalizado (Railway continua el despliegue)."
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
