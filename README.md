@@ -51,6 +51,9 @@ Pipeline CI/CD seguro con modelo de mineria de datos (NO LLM) para clasificar co
 - Capturas del bot de Telegram
 - Notebook de entrenamiento
 
+## PR de prueba
+Este cambio es solo para activar el pipeline dev -> test.
+
 ## Notificaciones obligatorias cubiertas
 - Inicio de revision de seguridad
 - Resultado de clasificacion (probabilidad)
