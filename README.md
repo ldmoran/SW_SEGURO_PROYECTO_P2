@@ -34,6 +34,7 @@ Pipeline CI/CD seguro con modelo de mineria de datos (NO LLM) para clasificar co
 - `TELEGRAM_CHAT_ID`
 - `RAILWAY_TOKEN`
 - `RAILWAY_SERVICE`
+- `RAILWAY_PROJECT_ID`
 
 3) Entrenar el modelo
 - Abrir el notebook en [notebooks/train_model.ipynb](notebooks/train_model.ipynb)
@@ -50,6 +51,9 @@ Pipeline CI/CD seguro con modelo de mineria de datos (NO LLM) para clasificar co
 - Enlace a despliegue
 - Capturas del bot de Telegram
 - Notebook de entrenamiento
+
+## PR de prueba
+Este cambio es solo para activar el pipeline dev -> test.
 
 ## Notificaciones obligatorias cubiertas
 - Inicio de revision de seguridad
